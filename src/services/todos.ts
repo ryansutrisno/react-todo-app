@@ -1,10 +1,8 @@
-import axios from 'axios';
-
-const API_BASE_URL = import.meta.env.BASE_URL;
+import axiosInstance from '../utils/axiosInstance';
 
 export const todoService = {
   async getAllTodos(token: string) {
-    const response = await axios.get(`${API_BASE_URL}/todos`, {
+    const response = await axiosInstance.get('/todos', {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -13,7 +11,7 @@ export const todoService = {
   },
 
   async createTodo(token: string, title: string, description: string) {
-    const response = await axios.post(`${API_BASE_URL}/todos`, {
+    const response = await axiosInstance.post('/todos', {
       title,
       description
     }, {
@@ -24,10 +22,11 @@ export const todoService = {
     return response.data;
   },
 
-  async updateTodo(token: string, id: number, title: string, description: string) {
-    const response = await axios.put(`${API_BASE_URL}/todos/${id}`, {
+  async updateTodo(token: string, id: number, title: string, description: string, completed?: boolean) {
+    const response = await axiosInstance.put(`/todos/${id}`, {
       title,
-      description
+      description,
+      ...(completed !== undefined && { completed })
     }, {
       headers: {
         Authorization: `Bearer ${token}`
@@ -37,7 +36,7 @@ export const todoService = {
   },
 
   async deleteTodo(token: string, id: number) {
-    const response = await axios.delete(`${API_BASE_URL}/todos/${id}`, {
+    const response = await axiosInstance.delete(`/todos/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -46,7 +45,7 @@ export const todoService = {
   },
 
   async searchTodos(token: string, params: unknown) {
-    const response = await axios.get(`${API_BASE_URL}/todos/search`, {
+    const response = await axiosInstance.get(`/todos/search`, {
       headers: {
         Authorization: `Bearer ${token}`
       },

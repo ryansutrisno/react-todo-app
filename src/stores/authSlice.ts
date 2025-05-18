@@ -1,15 +1,11 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
+import type { AuthState } from '../types/auth';
 
-interface AuthState {
-  token: string | null;
-  isAuthenticated: boolean;
-  loading: boolean;
-  error: string | null;
-}
+const token = localStorage.getItem('token');
 
 const initialState: AuthState = {
-  token: null,
-  isAuthenticated: false,
+  token: token,
+  isAuthenticated: !!token,
   loading: false,
   error: null
 };
@@ -39,6 +35,7 @@ const authSlice = createSlice({
       state.isAuthenticated = false;
       state.loading = false;
       state.error = null;
+      localStorage.removeItem('token');
     },
     registerStart(state) {
       state.loading = true;
