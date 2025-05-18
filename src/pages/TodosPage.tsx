@@ -69,7 +69,9 @@ const TodosPage = () => {
         completed?: boolean
     ) => {
         try {
-            await dispatch(updateTodo({ id, title, description, completed }) as never);
+            await dispatch(
+                updateTodo({ id, title, description, completed }) as never
+            );
 
             if (completed !== undefined) {
                 toast.success(`Todo marked as ${completed ? "completed" : "pending"}`);
@@ -88,6 +90,7 @@ const TodosPage = () => {
             await dispatch(deleteTodo(id) as never);
             toast.success("Todo deleted successfully");
             dispatch(fetchTodos() as never);
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
         } catch (error) {
             toast.error("Failed to delete todo");
         }
