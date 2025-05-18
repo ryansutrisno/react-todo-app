@@ -1,54 +1,34 @@
-# React + TypeScript + Vite
+# React Todo App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplikasi Todo List yang dibangun dengan React, TypeScript, dan Vite. Aplikasi ini memungkinkan pengguna untuk mengelola tugas-tugas mereka dengan fitur-fitur berikut:
 
-Currently, two official plugins are available:
+## Fitur Utama
+- **Autentikasi Pengguna**: Login, Register dan Logout dengan manajemen token
+- **Manajemen Todo**: Tambah, edit, hapus, dan lihat daftar todo
+- **Pencarian**: Cari todo berdasarkan parameter tertentu
+- **Validasi Form**: Validasi input menggunakan Yup dan React Hook Form
+- **Notifikasi**: Feedback kepada pengguna menggunakan React Toastify
+- **Tema Gelap/Terang**: Dukungan untuk mode gelap dan terang
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Teknologi yang Digunakan
+- **Frontend**: React dengan TypeScript
+- **State Management**: Redux dengan Redux Toolkit
+- **Routing**: React Router
+- **Styling**: Tailwind CSS
+- **Form Handling**: React Hook Form dengan Yup
+- **Icons**: Heroicons
+- **Build Tool**: Vite
 
-## Expanding the ESLint configuration
+## Struktur Aplikasi
+Aplikasi ini mengikuti arsitektur komponen Atomic Design:
+- **Atoms**: Komponen dasar seperti Button dan Input
+- **Molecules**: Komponen yang terdiri dari beberapa atom seperti Header dan SearchBar
+- **Organisms**: Komponen kompleks seperti TodoForm dan TodoList
+- **Pages**: Halaman utama seperti TodosPage dan LoginPage
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+## Cara Menjalankan
+1. Clone repository
+2. Install dependencies: `npm install`
+3. Copy `.env.example` menjadi `.env` dan sesuaikan konfigurasi
+4. Jalankan dalam mode development: `npm run dev`
+5. Build untuk production: `npm run build`        
