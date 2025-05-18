@@ -83,9 +83,14 @@ const TodosPage = () => {
         }
     };
 
-    const handleDeleteTodo = (id: number) => {
-        dispatch(deleteTodo(id) as never);
-        toast.success("Todo deleted successfully");
+    const handleDeleteTodo = async (id: number) => {
+        try {
+            await dispatch(deleteTodo(id) as never);
+            toast.success("Todo deleted successfully");
+            dispatch(fetchTodos() as never);
+        } catch (error) {
+            toast.error("Failed to delete todo");
+        }
     };
 
     const handleLogout = () => {
@@ -104,15 +109,12 @@ const TodosPage = () => {
                     <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-8">
                         My Todos
                     </h1>
-
                     <div className="mb-8">
                         <TodoForm onSubmit={handleAddTodo} />
                     </div>
-
                     <div className="mb-6">
                         <SearchBar onSearch={handleSearch} />
                     </div>
-
                     {loading && !displayedTodos.length ? (
                         <div className="space-y-4">
                             {[...Array(5)].map((_, index) => (

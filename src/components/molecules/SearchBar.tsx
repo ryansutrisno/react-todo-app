@@ -39,7 +39,6 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
             Object.entries(searchParams).filter(([_, v]) => v !== "")
         );
         onSearch(params);
-        setIsExpanded(false);
     };
 
     const handleReset = () => {
